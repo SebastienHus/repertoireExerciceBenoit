@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Indiquez un nom de package racine -->
+	<groupId>fr.exo01</groupId>
+	<!-- Indiquez un nom de projet -->	
+	<artifactId>exo01.bonjour</artifactId>
+	<version>1.0.0</version>
+	<description>Exemple de fichier POM</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.source>1.7</jdk.source>
+		<jdk.target>1.7</jdk.target>
+
+		<!-- https://maven.apache.org/plugins/index.html -->
+		<maven-compiler-plugin-version>3.6.1</maven-compiler-plugin-version>
+		<maven-jar-plugin-version>3.0.2</maven-jar-plugin-version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin-version}</version>
+				<configuration>
+					<source>${jdk.source}</source>
+					<target>${jdk.target}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin-version}</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<!-- Indique la classe qui a la methode main -->
+							<mainClass>fr.exo01.SecondExo</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

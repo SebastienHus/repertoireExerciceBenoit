@@ -1,0 +1,177 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 8 - Banque p3</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 8">Java E8</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Suite du projet<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Interface ICompteRemunere</a></li>
+					<li><a href="#t12">1-2 Interface ICompteASeuil</a></li>
+					<li><a href="#t13">1-3 Classe CompteASeuilRemunere</a></li>
+					<li><a href="#t14">1-4 Et Java 8 ?</a></li>
+					<li><a href="#t15">1-5 Test</a></li>
+				  </ul>
+				</li>				
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 8 - Banque p3</h1>
+			<p>Ajout des interfaces.</p>
+
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="Banque p2"><a href="../Exo07-Banque/Exo07.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="Banque p4"><a href="../Exo09-Banque/Exo09.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Suite du projet</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Interface ICompteRemunere <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Toujours dans le ProjetBank, créez une nouvelle interface <b>fr.banque.ICompteRemunere</b> qui respectera les contraintes suivantes :</p>
+					<ul>
+						<li>Méthodes (au moins) :
+						<ul>           
+						   <li><b>public double calculerInterets()</b></li>
+						   <li><b>public void verserInterets()</b></li>
+						   <li><b>public double getTaux()</b></li>
+						   <li><b>public void setTaux(double unTaux)</b></li>
+						</ul></li>
+					</ul>
+					<p>Votre classe fr.banque.CompteRemunere doit implémenter cette interface (mot clef <i>implements</i>). </p>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Interface ICompteASeuil <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Toujours dans le ProjetBank, créez une nouvelle interface <b>fr.banque.ICompteASeuil</b> qui respectera les contraintes suivantes :</p>
+					<ul>
+						<li>Méthodes (au moins) :
+						<ul>           
+							<li><b>public void retirer(double uneValeur)</b></li>
+							<li><b>public double getSeuil()</b></li>
+							<li><b>public void setSeuil(double unSeuil)</b></li>
+						</ul></li>
+					</ul>
+					<p>Votre classe fr.banque.CompteASeuil doit implémenter cette interface (mot clef <i>implements</i>). </p>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t13">
+				<div class="panel-heading">
+					<h3 class="panel-title">Classe CompteASeuilRemunere <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Toujours dans le ProjetBank, créez une nouvelle classe <b>fr.banque.CompteASeuilRemunere</b> qui respectera les contraintes suivantes :</p>
+					<ul>
+						<li>Cette classe hérite de la classe fr.banque.CompteRemunere <b>ou</b> fr.banque.CompteASeuil. Il vous appartient de décider.</li>
+						<li>Cette classe implémente fr.banque.ICompteRemunere <b>et/ou</b> fr.banque.ICompteASeuil. Il vous appartient de décider. Le choix sera dépendant du choix de votre classe parent</li>
+						<li>Attributs : seuil ou taux selon votre choix d'héritage</li>
+						<li>Constructeurs : au choix</li>
+						<li>Méthodes en fonction de l'héritage.</li>
+					</ul>
+					<p>Par exemple, ici on a choisit d'hériter de CompteRemunere</p>
+					<img src="../bootstrap-3.3.7-dist/img/bq05.png" class="center-block img-responsive" alt="Interfaces" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t14">
+				<div class="panel-heading">
+					<h3 class="panel-title">Et Java 8 ? <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>En Java 8 vous pouvez ajouter du code dans les méthodes de vos interfaces (utilisation du mot clef <i>default</i>)</p>
+					<p>Nous pourrions ainsi coder dans les interfaces ICompteASeuil et ICompteRemunere les méthodes (en plus du prototypage). </p>
+					<p>Pour que cela fonctionne, nous devrions ajouter une interface ICompte qui sera l'interface mère de ICompteASeuil et ICompteRemunere. </p>
+					<img src="../bootstrap-3.3.7-dist/img/bq06.png" class="center-block img-responsive" alt="Java 8" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t15">
+				<div class="panel-heading">
+					<h3 class="panel-title">Test <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Dans votre classe fr.Run complétez votre méthode main, ajoutez des CompteASeuilRemunere.</p>
+					<p>Modifiez ou vérifiez que votre code qui permet de verser les intérêts sur tous les comptes de type rémunéré fonctionne aussi avec les CompteASeuilRemunere (faites usage de l'interface fr.banque.ICompteRemunere au lieu de la classe)</p>
+				</div>
+			</div>
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="Banque p2"><a href="../Exo07-Banque/Exo07.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="Banque p4"><a href="../Exo09-Banque/Exo09.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>

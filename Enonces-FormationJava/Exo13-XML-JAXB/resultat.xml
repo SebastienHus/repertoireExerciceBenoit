@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<personne>
+    <adresses>
+        <adresse codePostal="78000" pays="France" ville="Versailles">
+            <rue>Pavé des gardes</rue>
+        </adresse>
+        <adresse codePostal="75000" pays="France" ville="Paris">
+            <rue>rue des près</rue>
+        </adresse>
+    </adresses>
+    <dateNaissance>18/12/1985</dateNaissance>
+    <nom>Smith</nom>
+    <prenom>Jhon</prenom>
+</personne>

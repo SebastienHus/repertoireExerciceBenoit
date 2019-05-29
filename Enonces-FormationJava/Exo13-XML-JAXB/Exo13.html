@@ -1,0 +1,222 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 13 - JAX-B</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 13">Java E13</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Mapping et annotation de base<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Classe Adresse</a></li>
+					<li><a href="#t12">1-2 Classe Personne</a></li>
+					<li><a href="#t13">1-3 Tester</a></li>
+				  </ul>
+				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">2 - Tester<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t21">2-1 Ecrire</a></li>
+					<li><a href="#t22">2-2 Lire</a></li>
+				  </ul>
+				</li>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 13 - JAX-B</h1>
+			<p><a href="http://www.oracle.com/technetwork/articles/javase/index-140168.html" target="_blank">JAXB</a> est la norme Java qui permet de lire/créer des flux XML de manière automatique sans avoir besoin de librairies externes (comme <a href="http://xerces.apache.org/" target="_blank">Xerces</a>, <a href="http://dom4j.github.io/" target="_blank">Dom4J</a>, <a href="http://www.jdom.org/" target="_blank">JDom</a>, ...). </p>
+			<p>Via des annotations, elle permet de décrire les balises/attributs XML que l'on souhaite lire/écrire. </p>
+			<p>Cette norme permet de réaliser un mapping Objet Java vers fichier XML et inversement. </p>
+			<p>Les annotations les plus usuelles :</p>
+			<ul>
+				<li><b>@<a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlRootElement.html" target="_blank">XmlRootElement</a></b> : définit le nom de la balise root de votre flux XML. A définir sur une classe Java.</li>
+				<li><b>@<a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlAccessorType.html" target="_blank">XmlAccessorType</a></b> : définit comment JAXB doit trouver les balises/attributs. A définir sur une classe Java. </li>
+				<li><b>@<a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlAttribute.html" target="_blank">XmlAttribute</a></b> : définit l'information comme un attribut de votre balise XML. A définir sur une méthode get/set ou un attribut de classe Java. </li>
+				<li><b>@<a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlElement.html" target="_blank">XmlElement</a></b> : définit l'information comme une sous balise de votre balise XML. A définir sur une méthode get/set ou un attribut de classe Java. </li>
+				<li><b>@<a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlElementWrapper.html" target="_blank">XmlElementWrapper</a></b> : dans le cas des informations multivaluées (liste, map, tableau), permet de définir une balise parentes englobants les informations. A définir sur une méthode get/set ou un attribut de classe Java. </li>
+				<li><b>@<a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlJavaTypeAdapter.html" target="_blank">XmlJavaTypeAdapter</a>(UneClasse.class)</b> : Ou UneClasse hérite de <a href="https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html" target="_blank">javax.xml.bind.annotation.adapters.XmlAdapter</a>, permet de définir comment transformer les informations.  A définir sur une méthode get/set ou un attribut de classe Java. </li>
+			</ul>
+
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="IO"><a href="../Exo12-IO/Exo12.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="JMX"><a href="../Exo14-JMX/Exo14.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Mapping et annotation de base</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Classe Adresse <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Créez un nouveau projet Java standard (ou Maven que vous ajusterez pour être en Java7 minimum, il n'y a pas de dépendance particulière à indiquer).</p>
+					<p>Créez une nouvelle classe <b>fr.xml.Adresse</b>, son rôle sera de représenter une adresse postale. Elle aura par exemple :</p>
+					<ul>
+						<li>Les attributs ville, rue, pays de type String et codePostal de type entier.</li>
+						<li>Les constructeurs qui vous semblent importants. Attention, JAXB a besoin d'un constructeur sans paramètre pour fonctionner.</li>
+						<li>Les méthodes get/set adaptées.</li>
+						<li>La méthode <b>public String toString()</b>.</li>
+					</ul>
+					<p>Annotez la classe avec <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlRootElement.html" target="_blank">@XmlRootElement</a> et <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlAccessorType.html" target="_blank">@XmlAccessorType</a></p>
+					<p>Annotez les attributs ou méthodes get/set avec <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlAttribute.html" target="_blank">@XmlAttribute</a> ou <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlElement.html" target="_blank">@XmlElement</a> (regardez le résultat attendu pour savoir quoi utiliser)</p>
+					<p>Pour adresse ont veut la représentation XML suivante : </p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;adresse codePostal="78000" pays="France" ville="Versailles"&gt;
+  &lt;rue&gt;Pavé des gardes&lt;/rue&gt;
+&lt;/adresse&gt;</pre>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Classe Personne <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+				<p>Créez une nouvelle classe <b>fr.xml.Personne</b>, son rôle sera de représenter une personne. Elle aura par exemple :</p>
+				<ul>
+					<li>Les attributs nom, prenom de type String, dateNaissance de type java.util.Date et adresses qui est une List&lt;Adresse&gt;.</li>
+					<li>Les constructeurs qui vous semblent importants. Rappel : JAXB a besoin d'un constructeur sans paramètre pour fonctionner.</li>
+					<li>Les méthodes get/set adaptées.</li>
+					<li>La méthode <b>public String toString()</b>.</li>
+				</ul>
+				<p>Annotez la classe avec <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlRootElement.html" target="_blank">@XmlRootElement</a> et <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlAccessorType.html" target="_blank">@XmlAccessorType</a></p>
+				<p>Annotez les attributs ou méthodes get/set avec <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlAttribute.html" target="_blank">@XmlAttribute</a> ou <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlElement.html" target="_blank">@XmlElement</a> (regardez le résultat attendu pour savoir quoi utiliser)</p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;personne&gt;
+    &lt;adresses&gt;
+        &lt;adresse codePostal="78000" pays="France" ville="Versailles"&gt;
+            &lt;rue&gt;Pavé des gardes&lt;/rue&gt;
+        &lt;/adresse&gt;
+        &lt;adresse codePostal="75000" pays="France" ville="Paris"&gt;
+            &lt;rue&gt;rue des près&lt;/rue&gt;
+        &lt;/adresse&gt;
+    &lt;/adresses&gt;
+    &lt;dateNaissance&gt;18/12/1985&lt;/dateNaissance&gt;
+    &lt;nom&gt;Smith&lt;/nom&gt;
+    &lt;prenom&gt;Jhon&lt;/prenom&gt;
+&lt;/personne&gt;</pre>
+				<p>Afin de gérer la date de naissance correctement, créez un adapter <b>fr.xml.DateAdapter</b>. Ce sera une classe qui hérite de <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html" target="_blank">javax.xml.bind.annotation.adapters.XmlAdapter</a>. Dans notre cas, elle sera typée &lt;String, Date&gt;. </p>
+				<p>Utilisez dans votre adapter l'objet <a href="http://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html" target="_blank">java.text.SimpleDateFormat</a> afin de transformer une Date en String et inversement. Vous pouvez aussi faire usage de l'objet <a target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html">java.time.format.DateTimeFormatter</a> si vous êtes en Java8+.</p>
+				<p>Utilisez l'annotation <a href="https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlJavaTypeAdapter.html" target="_blank">@XmlJavaTypeAdapter</a> sur la méthode/attribut associée à dateNaissance afin d'en faire usage. </p>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2 id="t2"><span class="label label-default">2</span> Tester</h2>
+			<div class="panel panel-default panel-primary" id="t21">
+				<div class="panel-heading">
+					<h3 class="panel-title">Ecrire - Marshalling<a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Créez une classe <b>fr.Run</b> avec une méthode main.</p>
+					<p>Instanciez deux adresses, placez-les dans une liste. Créez une Personne avec un nom, un prénom, donnez-lui la liste d'adresses, ajoutez lui une date de naissance en faisant usage du <a href="http://docs.oracle.com/javase/8/docs/api/java/util/GregorianCalendar.html" target="_blank">java.util.GregorianCalendar</a> ou de <a target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html">java.time.LocalDate</a> si vous êtes en Java8+. </p>
+					<p>Sauvegardez l'instance de l'objet personne dans un fichier en vous inspirant du code suivant : </p>
+<pre>
+...
+Personne personne = new Personne();
+...
+try {
+  <a href="https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html" target="_blank">JAXBContext</a> jaxbContext = JAXBContext.newInstance(Personne.class, Adresse.class);
+  <a href="https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/Marshaller.html" target="_blank">Marshaller</a> jaxbMarshaller = jaxbContext.createMarshaller();
+  jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+  jaxbMarshaller.marshal(personne, new File("c:/monFichier.xml"));
+} catch (Exception e) {
+  e.printStackTrace();
+}
+...</pre>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t22">
+				<div class="panel-heading">
+					<h3 class="panel-title">Lire - Unmarshalling <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Toujours dans votre classe fr.Run, chargez une instance d'un objet personne à partir d'un fichier en vous inspirant du code suivant : </p>
+<pre>
+...
+try {
+  JAXBContext jaxbContext = JAXBContext.newInstance(Personne.class, Adresse.class);
+  <a href="https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/Unmarshaller.html" target="_blank">Unmarshaller</a> jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+  Personne personneLue = (Personne) jaxbUnmarshaller.unmarshal(new File("c:/unAutreFichier.xml"));
+  System.out.println(personneLue);
+} catch (Exception e) {
+  e.printStackTrace();
+}
+...</pre>
+				</div>
+			</div>
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="IO"><a href="../Exo12-IO/Exo12.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="JMX"><a href="../Exo14-JMX/Exo14.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,333 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 1 - Eclipse</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 1">Java E1</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Eclipse<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Installation</a></li>
+					<li><a href="#t12">1-2 Paramétrage</a></li>
+				  </ul>
+				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">2 - Projet Standard<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t21">2-1 Création d'un projet</a></li>
+				  	<li><a href="#t22">2-2 Création d'une classe</a></li>
+					<li><a href="#t23">2-3 Compilation</a></li>
+					<li><a href="#t24">2-4 Lancement</a></li>
+					<li><a href="#t25">2-5 Livrable</a></li>
+				  </ul>
+				</li>
+				
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">3 - Projet Maven<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t31">3-1 Présentation Maven</a></li>
+					<li><a href="#t32">3-2 Importation du projet</a></li>
+					<li><a href="#t33">3-3 Présentation du projet</a></li>
+				  	<li><a href="#t34">3-4 Création d'une classe</a></li>
+					<li><a href="#t35">3-5 Compilation</a></li>
+					<li><a href="#t36">3-6 Lancement</a></li>
+					<li><a href="#t37">3-7 Livrable</a></li>
+				  </ul>
+				</li>				
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 1 - Eclipse</h1>
+			<p>Installation d'Eclipse, paramétrage et premier projet.</p>
+
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="Ligne de commande"><a href="../Exo00-Bonjour/Exo00-Installation.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="Point2D"><a href="../Exo02-Point2D/Exo02.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Eclipse</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Installation <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">	
+					<p>Eclipse est un outil de développement Java gratuit, il fonctionne sous Windows, Unix. </p>
+					<p>Il a besoin d'un JDK pour fonctionner, c'est un outil fait en Java. La version du Java nécessaire à Eclipse n'est pas obligatoirement la même que celle qui vous servira pour vos développements, lisez bien les près-requis de la version Eclipse choisie.</p>
+					<p>Récupérez la version adaptée à votre système (Windows, Unix, Mac ...)</p>
+					<p>Téléchargez la version adaptée à votre type de système 32 ou 64bits.</p>
+					<p>Prenez la version la plus adaptée à vos développements, dans le doute prenez la version Eclipse IDE <b><u>for Java EE</u></b> Developers qui permet de faire des applications Webs.</p>
+					<p>Téléchargement disponible ici <a href="http://www.eclipse.org/downloads/" target="_blank">http://www.eclipse.org/downloads/</a></p>
+					<p>Il n'y a pas d'installation (fichier exe, msi, ...) à proprement parler, il suffit de dé zipper 
+					l'archive ZIP sur votre disque dur. A besoin, installez <a href="http://www.7-zip.org/" target="_blank">7-zip</a> </p>
+					<p>Important : sous windows, il est conseillé de placer Eclipse directement au niveau de la racine d'une 
+					partition, par exemple sur c: (limitation sur la taille des noms de fichiers). </p>
+					<p>Vous devriez avoir l'arborescence suivante :</p>
+					<img src="../bootstrap-3.3.7-dist/img/eclipse00.png" class="center-block img-responsive" alt="Arboresence Eclipse" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Paramétrage <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Lancez Eclipse, double cliquez sur eclipse.exe</p>
+					<p>Eclipse va vous demander où créer votre workspace (espace de travails), c'est là qu'il mettra votre code. </p>
+					<p>Allez dans le menu Window/Preferences, puis tapez <i>encoding</i> dans le filtre en haut à gauche.</p>
+					<img src="../bootstrap-3.3.7-dist/img/peclipse00b.png" class="center-block img-responsive" alt="Encoding" />
+					<p>Si vous n'êtes pas en UTF-8, placez-vous en UTF-8 pour Workspace, CSS, HTML et JSP.</p>
+					<p>Faites Apply (en bas à droite), puis effacez votre filtre (<i>encoding</i>), allez sur Java/Installed JREs</p>
+					<p>Vérifiez que vous pointez bien sur un JDK et pas un JRE. Le cas échéant modifiez votre chemin afin de pointer vers un JDK. </p>
+					<img src="../bootstrap-3.3.7-dist/img/peclipse00.png" class="center-block img-responsive" alt="JDK et pas JRE" />
+					<p>N'oubliez pas de faire Apply. </p>			  
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2 id="t2"><span class="label label-default">2</span> Projet Standard</h2>
+			<div class="panel panel-default panel-primary" id="t21">
+				<div class="panel-heading">
+					<h3 class="panel-title">Création d'un projet <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Avant de créer du code Java, il faut créez un nouveau projet Java dans lequel on pourra placer notre code</p>
+					<ul>
+						<li>File/New/Java Project</li>
+					</ul>
+					<p>Donnez-lui un nom, par exemple Exo01, vous pouvez regarder les différents écrans du Wizard de configuration, mais nous ne modifierons aucun paramètre.</p>
+					<p>Vous passerez en perspective Java (et non Java EE). </p>
+				</div>
+			</div>
+			<div class="panel panel-default panel-primary" id="t22">
+				<div class="panel-heading">
+					<h3 class="panel-title">Création d'une classe <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">						
+					<p>Créez une nouvelle classe Java</p>
+					<ul>
+						<li>File/New/Class</li>
+					</ul>
+					<p>Donnez-lui un nom de package, par exemple : <b>fr.exo01</b></p>
+					<p>Donnez-lui un nom de classe, par exemple <b>SecondExo</b></p>
+					<p>Reprenez le code de <u>la méthode</u> <i>main</i> de l'exo00 et placez le dans votre classe. </p>
+				</div>
+			</div>
+			<div class="panel panel-default panel-primary" id="t23">
+				<div class="panel-heading">
+					<h3 class="panel-title">Compilation <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">	
+					<p>Sauvegardez votre code (<kbd><kbd>ctrl</kbd> + <kbd>s</kbd></kbd> ou via le menu faites usage des icônes qui ressemblent à des disquettes)</p>
+					<p>Il n'y a pas de compilation à proprement parler dans Eclipse, pour compiler il vous suffit de sauvegarder vos fichiers.</p>
+				</div>
+			</div>
+			<div class="panel panel-default panel-primary" id="t24">
+				<div class="panel-heading">
+					<h3 class="panel-title">Lancement <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">	
+					<p>Comme nous avons réalisé une classe qui possède une méthode main, nous pouvons l'exécuter.</p>
+					<p>Faites un clic droit sur votre fichier SecondExo</p>
+					<p>Popup menu Run As/Java Application</p>
+					<img src="../bootstrap-3.3.7-dist/img/eclipse01.png" class="center-block img-responsive" alt="Lancement" />
+				</div>
+			</div>
+			<div class="panel panel-default panel-primary" id="t25">
+				<div class="panel-heading">
+					<h3 class="panel-title">Livrable <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">	
+					<p>Si vous voulez faire un livrable de votre projet, faites un clic droit dessus puis Export -&gt; Jar File ou Runnable Jar File s'il y a une classe avec un main.</p>
+					<p>Suivez les écrans du Wizard, au final vous obtiendrez un JAR (Java Archive)</p>
+					<p>Pour exécuter un Jar avec un main : <pre>java -jar nomDuJar.jar</pre>
+				</div>
+			</div>	
+		</section>
+		
+		
+		<section>
+			<h2 id="t3"><span class="label label-default">3</span> Projet Maven</h2>
+			<div class="panel panel-default panel-primary" id="t31">
+				<div class="panel-heading">
+					<h3 class="panel-title">Présentation Maven <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>L'outil  <a href="https://maven.apache.org/" title="Voir Maven" target="_blank">Maven</a> permet de paramétrer un projet de manière neutre (c.a.d qui n'est pas associé à un outil de développement spécifique). </p>
+					<p>Les projets de cette formation sont réalisés en Maven afin de vous familiariser avec cette technique qui est la plus répandue actuellement. </p>
+					<p>Toutes les librairies qui seront nécessaires à nos projets seront automatiquement téléchargées d'internet grâce à Maven. </p>
+					<p>Toutes les informations associées aux paramétrages de votre projet seront dans le fichier pom.xml qui se trouve à la racine du projet. </p>
+					<p>La balise XML &lt;artifactId&gt; dans votre fichier pom.xml doit correspondre au context root de votre application WEB. Le context root est le nom qui apparait dans l'URL juste après celui du serveur J2EE.</p>
+					<p>Si vous modifiez le fichier pom.xml, vous devez faire un clic droit sur <b>votre projet</b> puis <b>Maven - Update Project...</b> afin qu'Eclipse prenne en compte les modifications.</p>
+					<p>L'ensemble des librairies nécessaires seront placées sur votre disque dur dans le dossier [utilisateur]/.m2. Dans de rare cas, si Maven ne marche plus, pensez à l'effacer. </p>
+					<p>Eclipse intègre Maven, il n'y a rien à installer de particulier. Par contre si vous voulez utiliser Maven en ligne de commande il faudra l'installer.</p>
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t32">
+				<div class="panel-heading">
+					<h3 class="panel-title">Création du projet <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Avant de créer du code Java, il faut créez un nouveau projet Java dans lequel on pourra placer notre code</p>
+					<ul>
+						<li>File/New/Maven Project</li>
+					</ul>
+					<p>Gardez les options standards dans le wizard, nous allons de toute manière les écraser plus tard. </p>
+					<p>Pour le groupId, indiquez un nom de package racine, par exemple ici : fr.exo01</p>
+					<p>Pour le artifactId, indiquez un nom de projet, par exemple ici : exo01.bonjour</p>
+					<p>groupId:artifactId représente en Maven un nom unique pour votre projet</p>
+					<p>Une fois le projet créé, copiez le fichier pom.xml qui se trouve à la racine de l'énoncé de l'exercice et collez le dans votre Eclipse à la place de celui généré. </p>
+					<p>Vous pouvez si vous le désirez, changer le groupId dans le pom.xml en indiquant un nom de package racine, par exemple ici : fr.exo01</p>
+					<p>Vous pouvez aussi changer le artifactId dans le pom.xml en indiquant un nom de projet, par exemple ici : exo01.bonjour. Attention sous Eclipse à garder la correspondance nom projet eclipse = artifactId</p>
+					<p>Important : Après toutes modifications faites sur le fichier pom.xml, faites un clic droit sur <b>votre projet</b> puis Maven - Update Project ...</p>
+					<img src="../bootstrap-3.3.7-dist/img/eclipse04.png" class="center-block img-responsive" alt="MAJ Maven" />
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t33">
+				<div class="panel-heading">
+					<h3 class="panel-title">Présentation du projet <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>L'arborescence d'un projet Maven est standardisée de la manière la suivante :</p>
+					<ul>
+						<li>votre code web (qui touche à la présentation) (.jsp, .html, .css, .js, Images, ...) ira dans src\main\webapp</li>
+						<li>votre code Java (entre autre vos Servlet) (fichiers .java, ...) ira dans src\main\java</li>
+						<li>vos fichiers de configurations (log, properties, ...) iront dans src\main\resources</li>
+						<li>vos librairies de code (fichiers .jar) devront être déclarées en tant que dépendances Maven</li>
+						<li>votre fichier web.xml est dans src\main\webapp\WEB-INF</li>
+						<li>votre code de test Java (vos tests JUnit) (fichiers .java) ira dans src\test\java</li>
+						<li>vos fichiers de configurations pour le test (log, properties, ...) iront dans src\test\resources</li>
+					</ul>
+					<p>Le dossier target sert de dossier temporaire aux actions de Maven. </p>
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t34">
+				<div class="panel-heading">
+					<h3 class="panel-title">Création d'une classe <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">			
+					<p>Créez une nouvelle classe Java dans le dossier src/main/java </p>
+					<ul>
+						<li>File/New/Class</li>
+					</ul>
+					<p>Donnez-lui un nom de package, par exemple : fr.exo01</p>
+					<p>Donnez-lui un nom de classe, par exemple SecondExo</p>
+					<p>Reprenez le code de <u>la méthode</u> <i>main</i> de l'exo00 et placez le dans votre classe. </p>
+				</div>
+			</div>
+			<div class="panel panel-default panel-primary" id="t35">
+				<div class="panel-heading">
+					<h3 class="panel-title">Compilation <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">	
+					<p>Sauvegardez votre code (<kbd><kbd>ctrl</kbd> + <kbd>s</kbd></kbd> ou via le menu faites usage des icônes qui ressemblent à des disquettes)</p>
+					<p>Il n'y a pas de compilation à proprement parler dans Eclipse, pour compiler il vous suffit de sauvegarder vos fichiers.</p>
+					<p>Sous vous souhaitez compiler avec Maven, faites un clic droit sur votre fichier pom.xml puis Run As - Maven Build</p>
+					<p>Indiquez dans l'élément Goals <b>clean compile</b></p>
+					<p>Après le succès du goal, Maven placera le résultat dans le dossier target. </p>
+					<p>De temps en temps, Eclipse et Maven se mélange, il vous faudra lancer un Project/Clean via Eclipse. </p>
+				</div>
+			</div>
+			<div class="panel panel-default panel-primary" id="t36">
+				<div class="panel-heading">
+					<h3 class="panel-title">Lancement <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">	
+					<p>Comme nous avons réalisé une classe qui possède une méthode main, nous pouvons l'exécuter.</p>
+					<p>Faites un clic droit sur votre fichier SecondExo</p>
+					<p>Popup menu Run As/Java Application</p>
+					<img src="../bootstrap-3.3.7-dist/img/eclipse01.png" class="center-block img-responsive" alt="Lancement" />
+				</div>
+			</div>			
+			<div class="panel panel-default panel-primary" id="t37">
+				<div class="panel-heading">
+					<h3 class="panel-title">Livrable <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">	
+					<p>Notre classe ayant une méthode <i>main</i>, si ce n'est pas déjà fait, indiquez dans le fichier pom.xml le nom long de la classe comme valeur de la balise &lt;mainClass&gt;. Un nom long de la classe = nom.de.package.NomDeLaClasse (ici : fr.exo01.SecondExo).</p>
+					<p>Comme indiqué plus haut, vous venez de modifier le fichier pom.xml, faites un clic droit sur <b>votre projet</b> puis Maven - Update Project ...</p>
+					<p>Sous vous souhaitez réaliser un livrable avec Maven, faites un clic droit sur votre fichier pom.xml puis <b>Run As - Maven Build...</b></p>
+					<p>Indiquez le goal <b>package</b> dans la case Goals</p>
+					<img src="../bootstrap-3.3.7-dist/img/eclipse02.png" class="center-block img-responsive" alt="Goals" />
+					<p>Après le succès du goal, votre JAR sera dans le dossier target, pensez à faire un clic droit refresh afin de voir le résultat. </p>
+					<img src="../bootstrap-3.3.7-dist/img/eclipse03.png" class="center-block img-responsive" alt="Livrable" />
+				</div>
+			</div>
+			
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="Ligne de commande"><a href="../Exo00-Bonjour/Exo00-Installation.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="Point2D"><a href="../Exo02-Point2D/Exo02.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>
+

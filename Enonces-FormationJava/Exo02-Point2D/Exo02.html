@@ -1,0 +1,134 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 2 - Classes</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 2">Java E2</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Point2D<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Création d'une classe</a></li>
+					<li><a href="#t12">1-2 Test</a></li>
+				  </ul>
+				</li>				
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 2 - Classe</h1>
+			<p>Réalisation de la classe Point2D.</p>
+
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="Utilisation Eclipse"><a href="../Exo01-Bonjour%20-%20Eclipse/Exo01-Installation.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="Constructeurs"><a href="../Exo03-Point2D/Exo03.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Point2D</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Création d'une classe <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">	
+					<p>Créez un nouveau projet Java Exo02 dans Eclipse. </p>
+					<p>Si vous le faites sous Maven, pensez à ajuster votre pom.xml afin qu'il soit au moins en Java7 (cf pom de l'exo 01). N'oubliez pas de mettre à jour votre projet Maven dès que vous modifiez le fichier pom.xml.</p>
+					<p>Ecrire une nouvelle classe <b>fr.dessin.Point2D</b> dans le projet Exo02 qui devra respecter les contraintes suivantes :</p>
+					  <ul>
+						<li>2 attributs x et y de type <i>int</i></li>
+						<li>Une méthode pour modifier la valeur de x (<b>void setX(int valX)</b>)</li>
+						<li>Une méthode pour modifier la valeur de y  (<b>void setY(int valY)</b>)</li>
+						<li>Une méthode pour récupérer la valeur de x  (<b>int getX()</b>)</li>
+						<li>Une méthode pour récupérer la valeur de y (<b>int getY()</b>)</li>
+						<li>Une méthode pour afficher le point  (<b>void afficher()</b>). Cette méthode affichera les valeurs des attributs x et y sur la sortie standard. Par exemple sous cette forme : <pre>[4, 34]</pre></li>
+						<li>Une méthode pour translater le point (<b>void translater(int dX, int dY)</b>). On est ici sur une <a target="_blank" href="https://fr.wikipedia.org/wiki/Translation_(g%C3%A9om%C3%A9trie)">translation vectorielle</a>, la valeur de x devient x+dX et la valeur de y se transforme en y+dY.</li>
+					  </ul>
+					  <img src="../bootstrap-3.3.7-dist/img/p2d01.png" class="center-block img-responsive" alt="Point2D" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Test <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Ecrire une nouvelle classe <b>fr.Run</b> dans le projet Exo02 qui devra respecter les contraintes suivantes :</p>
+					<ul>
+						<li>avoir une méthode <b>public static void main(String[] args)</b></li>
+						<li>Dans la méthode main, créez deux variables locales qui seront des instances de fr.exo2.Point2D et appeler leurs méthodes.</li>
+					</ul>
+					<p>Lancez votre classe (cf Exo01, Run As - Java Application)</p>
+				</div>
+			</div>
+			
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="Utilisation Eclipse"><a href="../Exo01-Bonjour%20-%20Eclipse/Exo01-Installation.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="Constructeurs"><a href="../Exo03-Point2D/Exo03.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>
+

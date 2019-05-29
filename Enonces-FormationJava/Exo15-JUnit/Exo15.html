@@ -1,0 +1,195 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 15 - JUnit4</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 15">Java E15</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - JUnit4<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Importer le projet</a></li>
+					<li><a href="#t12">1-2 Réaliser son test</a></li>
+					<li><a href="#t13">1-3 Lancer son test dans Eclipse</a></li>
+					<li><a href="#t14">1-4 Lancer vos tests avec Maven</a></li>
+				  </ul>
+				</li>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 15 - JUnit 4</h1>
+			<p>Nous allons réaliser des tests unitaires avec le framework <a target="_blank" href="http://junit.org/junit4/">JUnit v4</a>.</p>
+			<p>Un test unitaire sert à valider le bon fonctionnement d'un code. </p>
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="JMX"><a href="../Exo14-JMX/Exo14.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="Evenements"><a href="../Exo16-Evenements/Exo16.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> JUnit4</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Importer le projet <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Importez le projet Java qui se trouve dans le répertoire de cet exercice.</p>
+					<p>Rappel : File/Import puis Existing Maven Project, indiquez le répertoire de cet exercice, puis importer le code.</p>
+					<p>Vous devez prendre le projet en relation avec votre base de données. </p>
+					<p>Nous avons ajouté toutes les dépendances au projet dans le fichier pom.xml (driver JDBC, librairies JUnit) et nous avons aussi ajouté le plugin Maven qui permet de lancer les tests unitaires automatiquement (plugin <a target="_blank" href="http://maven.apache.org/components/surefire/maven-surefire-plugin/">surefire</a>). </p>
+					<p>Nous avons des entités dans le package fr.banque (Compte, Operation, Client), ils héritent tous de AbstractEntity. </p>
+					<img src="../bootstrap-3.3.7-dist/img/banque02.png" class="center-block img-responsive" alt="Banque" />
+					<p>Nous avons une classe utilitaire qui est dans fr.bd, elle permet de manipuler les entités (lecture/écriture) en se connectant à une base de données.</p>
+					<img src="../bootstrap-3.3.7-dist/img/banque03.png" class="center-block img-responsive" alt="AccesBD" />
+					<p>Lisez le code et réfléchissez à ce qu'il faut impérativement tester. </p>
+					<ul>
+						<li>Faut-il tester les classe entités ?, oui/non pourquoi ?, si oui qu'elle(s) méthode(s) tester et pourquoi ?</li>
+						<li>Faut-il tester la classe fr.bd.AccesBD ?, oui/non pourquoi ?, si oui qu'elle(s) méthode(s) tester et pourquoi ?</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Réaliser son test <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Vous savez quoi tester, maintenant créez une nouvelle classe Java dans le répertoire de source Maven dédié aux test : <b>src/test/java</b> </p>
+					<p>Son nom devrait être <i>Test</i>NomDeLaClasseJavaConcerne, par exemple TestAccesBD ou TestClient. </p>
+					<p>Son package devrait être le même que la classe que vous souhaitez tester. </p>
+					<p>Dans cette classe, sur ses <u>méthodes</u>, vous pouvez faire usage des annotations suivantes :</p>
+					<ul>
+						<li><b><a href="http://junit.org/junit4/javadoc/latest/org/junit/Test.html" target="_blank">@Test</a></b> : indique que la méthode fait partie des tests à exécuter.</li>
+						<li><b><a href="http://junit.org/junit4/javadoc/latest/org/junit/Before.html" target="_blank">@Before</a></b> : indique que la méthode est à exécuter avant chaque méthode annotée par @Test.</li>
+						<li><b><a href="http://junit.org/junit4/javadoc/latest/org/junit/After.html" target="_blank">@After</a></b> : indique que la méthode  est à exécuter après chaque méthode annotée par @Test.</li>
+						<li><b><a href="http://junit.org/junit4/javadoc/latest/org/junit/BeforeClass.html" target="_blank">@BeforeClass</a></b> : s'applique sur une méthode impérativement <u>static</u>, indique que la méthode est à exécuter une seule fois avant toutes les méthodes @Test.</li>
+						<li><b><a href="http://junit.org/junit4/javadoc/latest/org/junit/AfterClass.html" target="_blank">@AfterClass</a></b> : s'applique sur une méthode impérativement <u>static</u>, indique que la méthode est à exécuter une seule fois après toutes les méthodes @Test.</li>
+					</ul>
+					<p>Important : tous les éléments utilisés pour les tests (annotations, Assert, ...) doivent venir du package <b>org.junit</b></p>
+					<p>Ajoutez des méthodes dans votre nouvelle classe, ses méthodes sont public, ne retournent rien, ne prennent pas de paramètres, ne lèvent pas d'exceptions. Leur nom n'a pas d'importance, cependant il est de coutume de les appeler <i>test</i>NomDeLaMethodeATester.</p>
+					<p>Exemple, si on voulait tester la classe fr.banque.Client et sa méthode ajouterCompte</p>
+<pre>
+package fr.banque;
+
+import org.junit.<a href="http://junit.org/junit4/javadoc/latest/org/junit/Assert.html" target="_blank">Assert</a>;
+import org.junit.<a href="http://junit.org/junit4/javadoc/latest/org/junit/Test.html" target="_blank">Test</a>;
+
+import fr.banque.Client;
+import fr.banque.Compte;
+
+/**
+ * Test sur la classe fr.banque.Client.
+ */
+public class TestClient {
+
+  // D'autres méthodes à tester
+
+  /**
+   * Test sur la methode ajouterCompte de la classe Client.
+   */
+  <a href="http://junit.org/junit4/javadoc/latest/org/junit/Test.html" target="_blank">@Test</a>
+  public void testAjouterCompte() {
+    Client unClient = new Client();
+    Compte unCompte = new Compte(Integer.valueOf(1), Double.valueOf(5000));
+    unClient.ajouterCompte(unCompte);
+    <a href="http://junit.org/junit4/javadoc/latest/org/junit/Assert.html" target="_blank">Assert</a>.assertTrue("Le client doit avoir un seul compte", unClient.getComptes().length == 1);
+  }
+
+   // D'autres méthodes à tester ?
+}</pre>
+					<p>Notez qu'on ne fait pas de <i>if ...</i>, en test on utilise des <a href="http://junit.sourceforge.net/javadoc/org/junit/Assert.html" target="_blank">Assert</a>.assertQQChose. Vous avez une méthode assert pour tous les types de tests, consultez la <a href="https://github.com/junit-team/junit/wiki/Assertions" target="_blank">documentation</a>. </p>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t13">
+				<div class="panel-heading">
+					<h3 class="panel-title">Lancer son test dans Eclipse <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Dans Eclipse, faites un clic droit sur votre classe de test, puis Run As/JUnit Test. </p>
+					<img src="../bootstrap-3.3.7-dist/img/test.jpg" class="center-block img-responsive" alt="Junit" />
+					<p>Une nouvelle fenêtre vous présentera vos résultats de tests.</p>
+					<img src="../bootstrap-3.3.7-dist/img/resu.jpg" class="center-block img-responsive" alt="Junit" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t14">
+				<div class="panel-heading">
+					<h3 class="panel-title">Lancer vos tests avec Maven <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Lancer ses tests via Eclipse est une chose, mais il est préférable d'utiliser Maven. Cette technique est plus propre que le lancement dans Eclipse car c'est celle qu'utilisera Maven lors de la build.</p>
+					<p>Faites un clic droit sur votre fichier pom.xml, puis <b>Run As - Maven test</b></p>
+				</div>
+			</div>
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="JMX"><a href="../Exo14-JMX/Exo14.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="Evenements"><a href="../Exo16-Evenements/Exo16.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>
+

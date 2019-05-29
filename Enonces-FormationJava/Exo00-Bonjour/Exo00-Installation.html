@@ -1,0 +1,219 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 0 - Mise en place</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 0">Java E0</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Installation<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Installation du JDK</a></li>
+					<li><a href="#t12">1-2 Modification des variables d'environnements</a></li>
+					<li><a href="#t13">1-3 Installation d'un éditeur de texte</a></li>
+				  </ul>
+				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">2 - Première application<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+				  	<li><a href="#t21">2-1 Compilation - En ligne de commande</a></li>
+					<li><a href="#t22">2-2 Lancement - En ligne de commande</a></li>
+				  </ul>
+				</li>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 0 - Mise en place</h1>
+			<p>Installation et première classe.</p>
+
+			<nav>
+				<ul class="pager">
+					<li class="next" title="Utilisation Eclipse"><a href="../Exo01-Bonjour%20-%20Eclipse/Exo01-Installation.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Installation</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Installation d'un serveur J2EE <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Récupérez la version du Java adaptée à votre système (Windows, Unix, Mac ...)</p>
+					<p>Téléchargez la version adaptée à votre type de système 32 ou 64bits.</p>
+					<p>Prenez un JDK, car il va falloir compiler notre code Java afin de le lancer.</p>
+					<p>Téléchargement disponible ici <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
+					<img src="../bootstrap-3.3.7-dist/img/instjdk.png" class="center-block img-responsive" alt="Télécharger un JDK" />
+					
+					<p>Lancez l'installation </p>
+					<ul>
+						<li>sous Windows, double cliquez sur le fichier, attention il faut avoir les autorisations d'administration</li>
+						<li>sous unix / linux, utilisez le RPM ou l'installateur de package dédié.</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Modification des variables d'environnements <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Afin de terminer l'installation il est conseillé de modifier vos variables d'environnements</p>
+					<ul>
+						<li>La variable JAVA_HOME (en majuscule) pointera sur votre dossier d'installation du JDK. A titre d'exemple, sous windows 64bits : C:\Program Files\Java\jdk1.8.0_121</li>
+						<li>La variable PATH (en majuscule), doit contenir le chemin vers les binaires Java. 
+						<a href="../bootstrap-3.3.7-dist/img/instvar.png"><img src="../bootstrap-3.3.7-dist/img/instvar.png" class="center-block img-responsive" alt="Variables" /></a>
+						</li>
+					</ul>
+					<p>Sous Unix, il est conseillé de modifier le fichier .bashrc et d'y ajouter en fin de fichier :</p>
+<pre>
+export JAVA_HOME=/usr/java/jdk1.8.0._121/
+export PATH=$JAVA_HOME/bin:$PATH</pre>
+					<p>Pour valider que tout fonctionne, lancez un "Invité de commande" (un shell) et tapez les commandes : </p>
+<pre>java -version</pre>
+<pre>javac -version</pre>
+					<p>Dans certain cas, il vous faudra redémarrer votre Windows avant que les variables d'environnements soient effectives.</p>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t13">
+				<div class="panel-heading">
+					<h3 class="panel-title">Installation d'un éditeur de texte <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Pour la suite nous allons avoir besoin d'un éditeur de texte simple.</p>
+					<p>Vous pouvez faire usage de notepad, vi, nano, ... ou installer un autre éditeur (<a href="notepad-plus-plus.org/fr/">Notepad++</a>, <a href="https://atom.io/">Atom</a>, ...)</p>
+					<p>Ne prenez <b><u>jamais</u></b> Word ou Wordpad, se sont des éditeurs qui traitent des fichiers propriétaires en binaires.</p>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h2 id="t2"><span class="label label-default">2</span> Première application</h2>
+			<div class="panel panel-default panel-primary" id="t21">
+				<div class="panel-heading">
+					<h3 class="panel-title">Création d'une classe Java <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Créez un répertoire sur votre ordinateur : c:\temp\exo01, sous unix faites le dans votre répertoire personnel </p>
+					<p>Lancez un "Invité de commande" (un shell) et tapez les commandes :</p>
+					<ul>
+						<li>Windows : <pre>mkdir c:\temp</pre> puis <pre>mkdir c:\temp\exo01</pre></li>
+						<li>Unix : <pre>cd</pre> puis <pre>mkdir ./exo01</pre></li>
+					</ul>
+					<p>Dans le répertoire créez un fichier <b>PremierExo.java</b> (avec un 'P' et un 'E' majuscule)</p>
+					<p>Editez le fichier avec votre éditeur de texte</p>
+<pre>
+public class PremierExo {
+  public static void main(String[] args) {
+    System.out.println("Bonjour tout le monde");
+  }
+}</pre>
+					<p>Sauvegardez votre fichier.</p>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t22">
+				<div class="panel-heading">
+					<h3 class="panel-title">Compilation - En ligne de commande <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Lancez un "Invité de commande" (un shell) et tapez les commandes :</p>
+					<ul>
+						<li>Placez-vous dans le dossier que vous avez créé : <pre>cd c:\temp\exo01</pre> ou <pre>cd ./exo01</pre> sous Unix</li>
+						<li>Compilez : <pre>javac PremierExo.java</pre></li>					
+					</ul>
+					<p>Si tout se passe bien vous n'aurez pas de message lors de la dernière commande, sinon relisez le code. </p>
+					<p>Tapez la commande la commande suivante dans le dossier exo01 :</p>
+					<ul>
+						<li>Windows : <pre>dir</pre> </li>
+						<li>Unix : <pre>ls</pre> </li>
+					</ul>
+					<p>Vous constatez qu'un nouveau fichier, PremierExo<b>.class</b> est présent, c'est le résultat de la compilation de votre <b>.java</b>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t23">
+				<div class="panel-heading">
+					<h3 class="panel-title">Lancement - En ligne de commande <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Pour tester notre programme nous allons le lancer en ligne de commande, lancez un "Invité de commande" (un shell) et tapez les commandes :</p>
+					<ul>
+						<li>Si vous n'y êtes pas déjà, placez-vous dans le dossier exo01 (<i>cd c:\temp\exo01</i> ou <i>cd ./exo01</i>)</li>
+						<li>Exécutez : <pre>java PremierExo</pre> sans .class ou .java</li>					
+					</ul>
+					<p>Si tout se passe bien vous verrez sur la console</p>
+					<pre>Bonjour tout le monde</pre>
+				</div>
+			</div>
+
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="next" title="Utilisation Eclipse"><a href="../Exo01-Bonjour%20-%20Eclipse/Exo01-Installation.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>
+

@@ -1,0 +1,157 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 7 - Banque p2</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 7">Java E7</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Suite du projet<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Classe CompteRemunere</a></li>
+					<li><a href="#t12">1-2 Classe CompteASeuil</a></li>
+					<li><a href="#t13">1-3 Test</a></li>
+				  </ul>
+				</li>				
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 7 - Banque p2</h1>
+			<p>Ajout de classes filles pour les comptes.</p>
+
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="Banque p1"><a href="../Exo06-Banque/Exo06.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="Banque p3"><a href="../Exo08-Banque/Exo08.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Suite du projet</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Classe CompteRemunere <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Toujours dans le ProjetBank, créez une nouvelle classe <b>fr.banque.CompteRemunere</b> qui respectera les contraintes suivantes :</p>
+					<ul>
+						<li>Cette classe hérite de fr.banque.Compte (mot clef <i>extends</i>)</li>
+						<li>Attributs : taux de type double, qui représente le pourcentage de rémunération du compte (sa valeur est donc entre 0 et 1)</li>
+						<li>Constructeurs : au choix</li>
+						<li>Méthodes (au moins) :
+						<ul>           
+						   <li><b>public String toString()</b>. Pensez à faire usage de la méthode du parent.</li>
+						   <li><b>public double calculerInterets()</b> : qui va calculer les intérêts du compte (taux*solde) </li>
+						   <li><b>public void verserInterets()</b> : qui ajoute au solde la totalité des intérêts calculés</li>
+						   <li>Accesseurs/modifieurs (get/set) sur l'attribut.</li>
+						</ul></li>
+					</ul>
+					<img src="../bootstrap-3.3.7-dist/img/bq04.png" class="center-block img-responsive" alt="Classe CompteRemunere" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Classe CompteASeuil <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Toujours dans le projetBank, créez une nouvelle classe <b>fr.banque.CompteASeuil</b> qui respectera les contraintes suivantes :</p>
+					<ul>
+						<li>Cette classe hérite de fr.banque.Compte</li>
+						<li>Attributs : seuil de type double, qui représente le montant en dessous du quel le solde ne peut pas déscendre.</li>
+						<li>Constructeurs : au choix</li>
+						<li>Méthodes (au moins) :
+						<ul>           
+						   <li><b>public String toString()</b>. Pensez à faire usage de la méthode du parent.</li>
+						   <li><b>public void retirer(double uneValeur)</b> : doit faire les vérifications en fonction de la valeur du seuil. On ne peut retirer <i>M</i> du solde <i>S</i> si et seulement si on a S-M &gt; Seuil.</li>
+						   <li>Accesseurs/modifieurs (get/set) sur l'attribut.</li>
+						</ul></li>
+					</ul>
+					<img src="../bootstrap-3.3.7-dist/img/bq03.png" class="center-block img-responsive" alt="Classe CompteASeuil" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t13">
+				<div class="panel-heading">
+					<h3 class="panel-title">Test <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Dans votre classe fr.Run complétez votre méthode main, ajoutez des CompteRemunere et CompteASeuil à votre client.</p>
+					<p>Cette possibilité vient du fait que nous faisons du <a target="_blank" href="https://fr.wikipedia.org/wiki/Polymorphisme_(informatique)">polymorphisme</a>. </p>
+					<p>Réalisez le code qui permet de verser les intérêts sur tous les comptes de type rémunéré (c.a.d ayant un lien avec la classe CompteRemunere) d'un même client</p>
+					<p>Vous pouvez utiliser : </p>
+					<ul>
+						<li>La méthode <a target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#getClass--">getClass()</a> de vos objets et tester si elle est égale à CompteRemunere.class</li>
+						<li>L'opérateur <a target="_blank" href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op2.html">instanceof</a> afin de savoir si vos objets appartiennent à la famille des CompteRemunere</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="Banque p1"><a href="../Exo06-Banque/Exo06.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="Banque p3"><a href="../Exo08-Banque/Exo08.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>

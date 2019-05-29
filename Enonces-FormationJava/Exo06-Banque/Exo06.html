@@ -1,0 +1,158 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 6 - Banque p1</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 6">Java E6</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Début du projet<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Classe Compte</a></li>
+					<li><a href="#t12">1-2 Classe Client</a></li>
+					<li><a href="#t13">1-3 Test</a></li>
+				  </ul>
+				</li>				
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 6 - Banque p1</h1>
+			<p>Nouveau projet sur la gestion des comptes bancaires.</p>
+
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="Heritage"><a href="../Exo05-Point2D/Exo05.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="Banque p2"><a href="../Exo07-Banque/Exo07.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Début du projet</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Classe Compte <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Créez un nouveau projet Java, appelez le ProjetBank</p>
+					<p>Si vous le faites sous Maven, pensez à ajuster votre pom.xml afin qu'il soit au moins en Java7 (cf pom de l'exo 01). N'oubliez pas de mettre à jour votre projet Maven dès que vous modifiez le fichier pom.xml.</p>
+					<p>Créez une nouvelle classe <b>fr.banque.Compte</b> qui respectera les contraintes suivantes :</p>
+					<ul>
+						<li>Attributs : numero de type entier, solde de type double</li>
+						<li>Constructeurs : au choix</li>
+						<li>Méthodes (au moins) :
+						<ul>           
+						   <li><b>public String toString()</b></li>
+						   <li><b>public void ajouter(double unMontant)</b> : qui ajoute de l'argent au solde du compte</li>
+						   <li><b>public void retirer(double unMontant)</b> : qui retire de l'argent au solde du compte</li>
+						   <li>Accesseurs/modifieurs (get<i>Xxx</i>/set<i>Xxx</i>) sur les attributs. 
+							<ul>
+								<li>Faut-il laisser setSolde(unSolde) public ?</li>
+								<li>Faut-il laisser setNumero(unNumero) public ?</li>							
+							</ul></li>
+						</ul></li>
+					</ul>
+					<img src="../bootstrap-3.3.7-dist/img/bq01.png" class="center-block img-responsive" alt="Classe Compte" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Classe Client <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Toujours dans le ProjetBank, créez une nouvelle classe <b>fr.banque.Client</b> qui respectera les contraintes suivantes :</p>
+					<ul>
+						<li>Attributs : nom, prenom de type String, age, numero de type entier, compte<u>s</u> de type tableau de fr.banque.Compte (maximum 5). 
+						Le numéro du client n'a aucun rapport avec le numéro du Compte.</li>
+						<li>Constructeurs : au choix</li>
+						<li>Méthodes (au moins) :
+						<ul>
+							<li><b>public String toString()</b></li>
+							<li><b>public void ajouterCompte(Compte unCompte)</b> : méthode qui regarde dans le tableau de compte et place le paramètre dans la première case vide (c.a.d null) du tableau. Dans le cas où il n'y a plus de case vide, afficher un message.</li>
+							<li><b>public Compte getCompte(int numeroCompte )</b> : méthode qui parcours le tableau des comptes et donne le premier compte qui a  comme numéro la valeur du paramètre. Dans le cas où vous ne trouvez aucun compte qui a le bon numéro, affichez un message. Attention, n'oubliez pas que votre tableau contient des null par défaut.</li>
+							<li>Accesseurs/modifieurs (get/set) sur les attributs.</li>
+						</ul></li>            
+					</ul>
+					<img src="../bootstrap-3.3.7-dist/img/bq02.png" class="center-block img-responsive" alt="Classe Client" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t13">
+				<div class="panel-heading">
+					<h3 class="panel-title">Test <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Créez une classe <b>fr.Run</b> avec une méthode static main (cf exo00) et vérifiez que vos nouvelles classes et méthodes fonctionnent.</p>
+					<p>Instanciez un objet Client, instanciez plusieurs objets Compte et ajoutez-lui via la méthode <i>ajouterCompte</i>. </p>
+					<p>Ajoutez, retirez de l'argent sur ses comptes, vérifiez que tout fonctionne bien. </p>
+				</div>
+			</div>
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="Heritage"><a href="../Exo05-Point2D/Exo05.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="Banque p2"><a href="../Exo07-Banque/Exo07.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>

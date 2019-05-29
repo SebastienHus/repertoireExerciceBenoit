@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.banque</groupId>
+		<!-- Ici on indique l'artefactid du parent -->
+		<artifactId>en11.banque.jdbc.mysql.modules</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<!-- Ici on a le vrai artefactid -->
+	<artifactId>en.banque.mysql</artifactId>
+	<packaging>jar</packaging>
+	<description>Utilisation de Jdbc avec MySQL</description>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin-version}</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<!-- Indique la classe qui a la methode main -->
+							<mainClass>fr.TestDB</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- On n'indique tout de meme la dependance avec notre banque.map -->
+		<dependency>
+			<groupId>fr.banque</groupId>
+			<artifactId>en.banque.map</artifactId>
+			<!-- Les versions sont dans le pom parent -->
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<!-- Les versions sont dans le pom parent -->
+		</dependency>
+	</dependencies>
+</project>

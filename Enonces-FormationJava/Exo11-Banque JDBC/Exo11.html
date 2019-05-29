@@ -1,0 +1,371 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 11 - JDBC</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 11">Java E11</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Installation<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 MySQL</a></li>
+					<li><a href="#t12">1-2 HSQL</a></li>
+				  </ul>
+				</li>
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">2 - Projet<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t21">2-1 Identification du driver</a></li>
+					<li><a href="#t22">2-2 Ajout du Driver pour Maven</a></li>
+					<li><a href="#t23">2-3 Ajout dans Eclipse du driver</a></li>
+					<li><a href="#t24">2-4 Une nouvelle classe</a></li>
+					<li><a href="#t25">2-5 Lien avec le projet banque</a></li>
+					<li><a href="#t26">2-6 Test</a></li>
+				  </ul>
+				</li>							
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 11 - JDBC</h1>
+			<p>Accès à une base de données en JDBC, mise en place d'un <a target="_blank" href="https://fr.wikipedia.org/wiki/Mapping_objet-relationnel">ORM</a>.</p>
+
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="Banque p5"><a href="../Exo10-Banque%20List%20et%20Map/Exo10.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="IO"><a href="../Exo12-IO/Exo12.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Installation</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">MySQL <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Installez une base MySQL sur votre ordinateur, téléchargez MySQL sur <a href="http://dev.mysql.com/downloads/" target="_blank">http://dev.mysql.com/downloads/</a></p>
+					<p>Lors de l'installation, notez bien le mot de passe que vous aurez choisi pour l'utilisateur root. </p>
+					<p>Lancez l'utilitaire Workbench et importez la base qui se trouve dans le dosser db de l'exercice, fichier banque.sql. </p>
+					<img src="../bootstrap-3.3.7-dist/img/db00.png" class="center-block img-responsive" alt="Base banque" />
+					<p>La base se compose de trois tables, un utilisateur peut posséder des comptes. Un compte n'appartient qu'a un seul utilisateur. Les comptes peuvent générer des opérations. Une opération n'est liée qu'a un seul compte. </p>
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">HSQL <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>HSQL est une base de données relationnelle mémoire/fichier elle est gratuite et téléchargeable sur <a href="http://hsqldb.org/" target="_blank">http://hsqldb.org/</a></p>
+					<p>N'installez pas HSQL si vous avez déjà installé MySQL, une seule base suffit. Mais si l'installation de MySQL n'est pas possible sur votre poste faites usage de HSQL. </p>
+					<p>Vous pouvez la lancer via le script startdb.bat qui se trouve dans le dossier HSQL de l'exercice. Il démarrera la base de données.</p>
+					<p>Ne fermez pas la fenêtre DOS qui s'ouvre, cela terminerait la base. </p>
+					<p>Après son lancement, pensez à l'initialiser en lançant le scripte initdb.bat. Cette initialisation ne se fera qu'une seule fois.</p>
+					<p>Lors des exercices, vérifiez que la base est lancée avant de tenter d'y accéder. </p>
+				</div>
+			</div>
+		</section>
+
+
+		<section>
+			<h2 id="t2"><span class="label label-default">2</span> Projet</h2>
+			<div class="panel panel-default panel-primary" id="t21">
+				<div class="panel-heading">
+					<h3 class="panel-title">Identification du driver <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Hormis dans le cas de ODBC Windows, il nous faut un driver afin que le code Java puisse accéder aux données qui sont dans la base</p>
+					<p>Le driver est dépendant de la base, vous en avez pour Oracle, DB2, MySQL, SQL Server ..., on peut les télécharger sur le site de chaque éditeur.</p>
+					<p>Regardez sur le site de l'éditeur de votre base, la version et le nom du driver Java </p>
+					<p>Pour MySQL il se trouve sur <a href="http://dev.mysql.com/downloads/connector/j/" target="_blank">http://dev.mysql.com/downloads/connector/j/</a>. </p>
+					<p>Pour HSQL il se trouve sur  <a href="http://hsqldb.org/" target="_blank">http://hsqldb.org</a>. </p>				
+					<p>Vous pouvez aussi regarder sur le <a href="https://mvnrepository.com/" target="_blank">repository Maven</a>
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t22">
+				<div class="panel-heading">
+					<h3 class="panel-title">Ajout du driver pour Maven <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">			
+					<p>Créez un nouveau projet Maven dans Eclipse, projetBd.</p>
+					<p>Reprenez le même fichier pom.xml que dans les exercices précédents.</p>
+					<p>Indiquez dans votre fichier pom.xml la dépendance vers le driver Java via l'usage des <i>dependency</i> :</p>
+<pre>
+&lt;project&gt;
+
+  ...
+
+  &lt;dependencies&gt;
+
+    &lt;-- Pour la base MySQL --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;mysql&lt;/groupId&gt;
+      &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+      &lt;-- Vous pouvez changer le numero de version --&gt;
+      &lt;version&gt;5.1.40&lt;/version&gt;
+    &lt;/dependency&gt;
+
+
+    &lt;-- Pour la base HSQL --&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.hsqldb&lt;/groupId&gt;
+      &lt;artifactId&gt;hsqldb&lt;/artifactId&gt;
+      &lt;-- Vous pouvez changer le numero de version --&gt;
+      &lt;version&gt;2.3.4&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/project&gt;</pre>
+					<p>Rappel : Après toutes modifications faites sur le fichier pom.xml, faites un clic droit sur <b>votre projet</b> puis Maven - Update Project ...</p>
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t23">
+				<div class="panel-heading">
+					<h3 class="panel-title">Ajout dans Eclipse du driver <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Si <b>vous ne voulez pas</b> faire de projet Maven, vous pouvez faire un projet Java standard, File / New / Project / Java Project, donnez-lui le nom de projetBd</p>
+					<p>Créez un répertoire lib dans ce nouveau projet</p>
+					<p>Placez (copiez/collez) dedans le JAR représentant votre driver JDBC (dans notre cas, c'est le fichier mysql-connector-java-x.x.xx-bin.jar ou hsqldb-2.x.x.jar)</p>
+					<p>Nous devons indiquer à notre projet qu'il doit charger le JAR, dans Eclipse faites un clic droit sur votre projet, allez dans le menu Properties (tout en bas).</p>
+					<p>Puis, Java Build Path, onglet Libraries, cliquez sur le bouton Add JARs..., indiquez le chemin vers votre JAR qui a été placé dans lib.</p>
+					<img src="../bootstrap-3.3.7-dist/img/link00.png" class="center-block img-responsive" alt="Lien Eclipse" />
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t24">
+				<div class="panel-heading">
+					<h3 class="panel-title">Une nouvelle classe <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Toujours dans le projetBd, créez une nouvelle classe fr.TestDB01.</p>
+<pre>
+package fr;
+<b>// TOUS VOS IMPORT LIES AU JDBC DOIVENT PROVENIR DE :</b>
+import java.sql.*;
+
+public class TestDB01 {
+  // Cette classe n'a aucun attribut
+  ...
+}</pre>         
+					<p>Dans un premier temps, nous allons coder de manière linéaire, c'est à dire que nous allons consommer de l'objet.</p>
+					<p>Ajoutez une méthode <b>public static void main(String[] args)</b> à votre classe Java. </p>
+<pre>
+  public static void main(String[] args) {
+    ...
+  }</pre>         
+					<p>Dans cette méthode on veut : </p>
+					<ul>
+						<li>Définir les 4 informations capitales pour se connecter à une base de données en Java (driver, url, login, password)
+<pre>
+  ...
+  public static void main(String[] args) {
+    // Nom du driver pour acceder a la base de donnees.
+    // Lire la documentation associee a sa base de donnees pour le connaitre
+    final String dbDriver = "xxx.xxx.Xxx"; // Nom long d'une classe
+    // URL d'access a la base de donnees.
+    final String dbUrl = "xxx:xxx:xxx://xxx/banque"; // banque est le nom de la base
+    // Login d'access a la base de donnees.
+    final String dbLogin = "root"; // Ou "SA" en HSQL
+    // Mot de passe d'access a la base de donnees.
+    final String dbPwd = "root"; // Ou "" en HSQL
+    ...
+  }</pre>  
+						</li>
+						<li>Charger le driver en mémoire
+<pre>
+    ...
+    try {
+      Class.forName(dbDriver);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    ...</pre>  
+						</li>
+						<li>Se connecter à la base de données
+<pre>
+    ...
+    Connection connection = null;
+    Statement request = null;
+    ResultSet resultat = null;
+
+    try {
+      connection = DriverManager.getConnection(dbUrl, dbLogin, dbPwd);
+      ... </pre> 
+						</li>
+						<li>Exécuter une première requête qui sélectionne le nom et le prénom de tous les utilisateurs. 
+<pre>
+      ...
+      request = connection.createStatement();
+      resultat = request.executeQuery("<i>a vous de faire la requête SQL</i>");
+      ...</pre>
+						</li>
+						<li>Parcourir le résultat et afficher le nom et le prénom de tous les utilisateurs récupérés. 
+<pre>
+      ...
+      while (resultat.next()) {
+        String nom = resultat.getString("nom");
+        String prenom = resultat.getString("prenom");
+        System.out.println(nom + " " + prenom);
+      }
+      ...</pre>
+						</li>          
+						<li>Dans un <i>finally</i>, fermer tous les objets JDBC et se déconnecter de la base de données
+<pre>
+      ...
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      if (resultat != null) {
+        try {
+          resultat.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+      if (request != null) {
+        try {
+          request.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+      if (connection != null) {
+        try {
+          connection.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    ...</pre>          
+						</li>
+					</ul>
+					<p>Lancez votre classe et validez que tout fonctionne bien. </p>
+
+        
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t25">
+				<div class="panel-heading">
+					<h3 class="panel-title">Lien avec le projet banque <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Il va nous falloir récupérer les classes réalisées dans l'exercice 10. </p>
+					<p>Afin de faire simple, copier coller toutes  vos classes de l'exo10 dans l'exo11. Si vous êtes en Maven, vous pouvez aussi réaliser un projet multi modules afin de créer des dépendances entre vos projets. Vous pouvez importer l'exemple dans l'énoncé de l'exercice (en11.banque.jdbc.mysql.modules).</p>
+					<br/>
+					<p>Toujours dans la même lignée, créez une seconde classe fr.TestDB02. </p>
+					<p>On veut maintenant que la requête récupère toutes les informations de la table utilisateur. </p>
+					<p>Mais on ne veut pas les afficher, on veut fabriquer une liste (java.util.List) d'objets Client (ce qui donne une java.util.List&lt;Client&gt;).</p>
+					<p>On fait ici de l'<a target="_blank" href="https://fr.wikipedia.org/wiki/Mapping_objet-relationnel">ORM (Object Relational Mapping)</a>.</p>
+					<p>Vous devrez résoudre la problématique suivante : dans votre objet vous avez un age sous forme d'entier, dans la base vous avez une date de naissance. </p>
+					<p>Vous pouvez :</p>
+					<ul>
+						<li>Faire une requête SQL qui va calculer l'age à partir de la date de naissance. Dans cette approche c'est la base de données qui fait le calcul. </li>
+						<li>Faire une requête SQL qui ramène la date de naissance et laisser votre code Java faire les calculs de l'age. </li>
+					</ul>
+					<p>Dans tous les cas, faites attention, tous les utilisateurs n'ont pas obligatoirement de date de naissance. </p>
+					<br/>
+					<p>Créez une troisième classe fr.TestDB03. </p>
+					<p>On veut maintenant que la requête récupère toutes les informations des comptes rattachées à un utilisateur.  </p>
+					<p>Comme dans fr.TestDB02, on ne veut pas les afficher, on veut fabriquer une liste (java.util.List) d'objets Compte (ce qui donne une java.util.List&lt;Compte&gt;).</p>
+					<p>Attention : vous devrez gérer les cas des comptes rémunérés, comptes à seuils, comptes à seuils rémunérés. Vous ferez usage du polymorphisme et testerez si les données en base sont null ou pas (faites usage de la méthode wasnull() de la classe ResultSet ou utilisez getObject(...)).</p>
+					<br/>
+					<p>Créez une quatrième classe fr.TestDB04. </p>
+					<p>On veut maintenant que la requête récupère toutes les opérations associées à un compte. </p>
+					<p>Comme dans fr.TestDB02, on ne veut pas les afficher, on veut fabriquer une liste (java.util.List) d'objets Operation (ce qui donne une java.util.List&lt;Operation&gt;).</p>
+					<p>Commencez par créer la classe <b>fr.banque.Operation</b>, si elle n'existe pas, elle servira à représenter les données qui sont dans la table operation.</p>
+					<p>Un attribut = une colonne, respectez le typage de votre base.</p>
+
+					<p>Réfléchissez à comment transformer nos 4 classes fr.TestDBXX en une seule pourvues de méthodes et d'attributs.</p>
+					<p>Par exemple elle pourrait avoir les méthodes : </p>
+					<ul>
+					  <li>public void seConnecter(String unLogin, String unPassword, String unUrl)</li>
+					  <li>public void seDeconnecter()</li>
+					  <li>public List&lt;Client&gt; recupererClients()</li>
+					  <li>public List&lt;Compte&gt; recupererComptes(int unIdClient)</li>          
+					  <li>public List&lt;Operation&gt; recupererOperations(int unIdCompte)</li>
+					</ul>
+					<p>Réfléchissez aussi aux attributs de votre nouvel objet, par exemple login,password,url ... et pourquoi. </p>
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t26">
+				<div class="panel-heading">
+					<h3 class="panel-title">Test <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Testez votre code.</p>
+				</div>
+			</div>
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="Banque p5"><a href="../Exo10-Banque%20List%20et%20Map/Exo10.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="IO"><a href="../Exo12-IO/Exo12.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>

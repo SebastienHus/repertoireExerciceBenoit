@@ -1,0 +1,175 @@
+package fr.banque;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Ceci est la classe Client. <br/>
+ *
+ * Le client possede comme attributs des types Object ainsi que des types
+ * simples. <br/>
+ */
+public class Client extends AbstractEntity {
+	private static final long serialVersionUID = 1L;
+	private String nom;
+	private String prenom;
+	private Integer age;
+	// Toujours utiliser une Interface pour la declaration
+	private Map<Integer, Compte> tabComptes;
+
+	/**
+	 * Constructeur de l'objet. <br/>
+	 */
+	public Client() {
+		this(null, null, null, null);
+	}
+
+	/**
+	 * Constructeur de l'objet. <br/>
+	 *
+	 * @param unNumero
+	 *            un numero
+	 * @param unNom
+	 *            le nom du client
+	 * @param unPrenom
+	 *            le prenom du client
+	 * @param unAge
+	 *            l'age du client
+	 */
+	public Client(Integer unNumero, String unNom, String unPrenom, Integer unAge) {
+		super(unNumero);
+		this.setNom(unNom);
+		this.setPrenom(unPrenom);
+		this.setAge(unAge);
+		// Par contre, pour l'instanciation, on choisit une classe (HashMap,
+		// HashTable, TreeMap, ...)
+		this.tabComptes = new HashMap<Integer, Compte>();
+	}
+
+	/**
+	 * Retourne l'age du client. <br/>
+	 *
+	 * @return l'age du client
+	 */
+	public Integer getAge() {
+		return this.age;
+	}
+
+	/**
+	 * Retourne le nom du client. <br/>
+	 *
+	 * @return le nom du client
+	 */
+	public String getNom() {
+		return this.nom;
+	}
+
+	/**
+	 * Retourne le prenom du client. <br/>
+	 *
+	 * @return le prenom du client
+	 */
+	public String getPrenom() {
+		return this.prenom;
+	}
+
+	/**
+	 * Fixe l'age du client. <br/>
+	 *
+	 * @param unAge
+	 *            le nouvel age du client
+	 */
+	public void setAge(Integer unAge) {
+		this.age = unAge;
+	}
+
+	/**
+	 * Fixe le nom du client. <br/>
+	 *
+	 * @param unNom
+	 *            le nouveau nom du client
+	 */
+	public void setNom(String unNom) {
+		this.nom = unNom;
+	}
+
+	/**
+	 * Fixe le prenom du client. <br/>
+	 *
+	 * @param unPrenom
+	 *            le nouveau prenom du client
+	 */
+	public void setPrenom(String unPrenom) {
+		this.prenom = unPrenom;
+	}
+
+	/**
+	 * Retourne tous les comptes du client sous forme d'iterateur. <br/>
+	 *
+	 * @return la liste des comptes du client
+	 */
+	public Compte[] getComptes() {
+		return this.tabComptes.values().toArray(new Compte[this.tabComptes.size()]);
+	}
+
+	/**
+	 * Retourne un compte particulier. <br/>
+	 *
+	 * @param unNumero
+	 *            numero du compte
+	 * @return le compte vise ou null si il n'existe pas
+	 */
+	public Compte getCompte(Integer unNumero) {
+		return this.tabComptes.get(unNumero);
+	}
+
+	/**
+	 * Ajoute un compte dans la liste des comptes de l'utilisateur. <br/>
+	 *
+	 * @param unCompte
+	 *            le compte a ajouter
+	 */
+	public void ajouterCompte(Compte unCompte) {
+		if (unCompte != null) {
+			this.tabComptes.put(unCompte.getNumero(), unCompte);
+		}
+	}
+
+	/**
+	 * Formatage du client sous forme de String utilisable directement par
+	 * System.out.println(..);. <br/>
+	 *
+	 * La methode toString() est heritee de la classe java.lang.Object, elle est
+	 * tres pratique quand on veut debuguer un programme. Elle est
+	 * automatiquement appellee quand on fait de la concatenation entre chaines
+	 * de characteres : "a"+12+"b"+monClient. <br/>
+	 *
+	 * @return une representation chainee de l'objet
+	 */
+	@Override
+	public String toString() {
+		// L'utilisation du '+' entre chaine de charactere n'est pas tres
+		// optimise
+		// Il est prefereble d'utiliser un StringBuilder pour fabriquer une
+		// chaine
+		// de charactere et eviter ainsi la lourdeur d'execution liee au '+'
+		// entre
+		// chaine de charactere
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append(" Nom: ");
+		sb.append(this.getNom());
+		sb.append(" Prenom: ");
+		sb.append(this.getPrenom());
+		sb.append(" Age: ");
+		sb.append(this.getAge());
+		sb.append("\n");
+		for (Compte compte : this.tabComptes.values()) {
+			if (compte != null) {
+				sb.append(compte);
+				sb.append("\n");
+			}
+		}
+		return sb.toString();
+	}
+}

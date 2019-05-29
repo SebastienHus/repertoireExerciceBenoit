@@ -1,0 +1,137 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 9 - Banque p4</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 9">Java E9</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Suite du projet<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Classe BanqueException</a></li>
+					<li><a href="#t12">1-2 Impacte sur les objets Compte</a></li>
+					<li><a href="#t13">1-3 Test</a></li>
+				  </ul>
+				</li>				
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 9 - Banque p4</h1>
+			<p>Ajout des exceptions.</p>
+
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="Banque p3"><a href="../Exo08-Banque/Exo08.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="Banque p5"><a href="../Exo10-Banque%20List%20et%20Map/Exo10.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Suite du projet</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Classe BanqueException <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Toujours dans le ProjetBank, créez une nouvelle classe <b>fr.banque.BanqueException</b> qui respectera les contraintes suivantes :</p>
+					<ul>
+						<li>Elle hérite de la classe <a target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html">java.lang.Exception</a></li>
+						<li>Constructeurs : les mêmes que sa classe mère</li>
+						<li>Méthode : aucune</li>
+					</ul>
+					<img src="../bootstrap-3.3.7-dist/img/bq07.png" class="center-block img-responsive" alt="BanqueException" />
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Impacte sur les objets Compte <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Nous allons utiliser notre exception dans deux méthodes :</p>
+					<ul>
+						<li>Dans fr.banque.Compte ses héritiers et interfaces associées :<b>public void retirer(double valeur)</b> : afin qu'elle lève une exception de type fr.banque.BanqueException si l'on dépasse le seuil. (<i>throws</i> sur la méthode, <i>throw</i> dans la méthode).</li>
+						<li>Dans fr.banque.Client : <b>public void ajouterCompte(Compte unCompte)</b> : afin qu'elle lève une exception de type fr.banque.BanqueException quand il n'y a plus de place dans le tableau </li>
+					</ul>
+					<p>Notez l'impact de la modification du prototypage de la méthode retirer. </p>
+				</div>
+			</div>
+			
+			<div class="panel panel-default panel-primary" id="t13">
+				<div class="panel-heading">
+					<h3 class="panel-title">Test <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Validez vos changements dans votre main.</p>
+					<p>Dans une méthode <i>main</i> il faut gérer les exceptions &lt;=&gt; try / catch</p>
+				</div>
+			</div>
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="Banque p3"><a href="../Exo08-Banque/Exo08.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="Banque p5"><a href="../Exo10-Banque%20List%20et%20Map/Exo10.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>

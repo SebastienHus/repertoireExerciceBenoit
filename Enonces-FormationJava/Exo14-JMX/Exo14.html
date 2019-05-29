@@ -1,0 +1,165 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 14 - JMX</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 14">Java E14</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Un Bean JMX<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Classe Calculatrice</a></li>
+					<li><a href="#t12">1-2 Interface CalculatriceMBean</a></li>
+					<li><a href="#t13">1-3 Tester</a></li>
+				  </ul>
+				</li>
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 14 - JMX</h1>
+			<p><a href="http://docs.oracle.com/javase/tutorial/jmx/overview/index.html" target="_blank">JMX</a> est la norme Java qui permet de mettre à disposition des beans dans un programme afin de les manipuler à distance à travers différents protocoles. </p>
+			<p>Vous pouvez obtenir plus d'exemples <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jmx/examples.html" target="_blank">ici</a> et <a href="http://www.jmdoudoux.fr/java/dej/chap-jmx.htm" target="_blank">ici</a>.</p>
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="JAX-B"><a href="../Exo13-XML-JAXB/Exo13.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="JUnit"><a href="../Exo15-JUnit/Exo15.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Un Bean JMX</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Classe Calculatrice <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Créez un nouveau projet Java standard (ou Maven que vous ajusterez pour être en Java7 minimum, il n'y a pas de dépendance particulière à indiquer).</p>
+					<p>Créez une nouvelle classe <b>fr.jmx.Calculatrice</b>, son rôle sera de représenter une calculatrice. Elle aura par exemple :</p>
+					<ul>
+						<li>Un attribut dernierResultat de type double.</li>
+						<li>Les constructeurs qui vous semblent importants. Attention, JMX a besoin d'un constructeur sans paramètre pour fonctionner.</li>
+						<li>La méthode get/set adaptée.</li>
+						<li>La méthode <b>public double add(double c1, double c2)</b> qui retourne c1+c2 et place aussi le résultat dans dernierResultat.</li>
+						<li>La méthode <b>public double sub(double c1, double c2)</b> qui retourne c1-c2 et place aussi le résultat dans dernierResultat.</li>
+						<li>La méthode <b>public double mult(double c1, double c2)</b> qui retourne c1*c2 et place aussi le résultat dans dernierResultat.</li>
+						<li>La méthode <b>public double div(double c1, double c2)</b> qui retourne c1/c2 et place aussi le résultat dans dernierResultat.</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Interface CalculatriceMBean <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+					<div class="panel-body">
+					<p>Créez une nouvelle interface <b>fr.jmx.CalculatriceMBean</b>, son rôle sera de représenter la classe Calculatrice. Générez l'interface via Eclipse, menu refactor/extract interface. </p>
+					<p>Important : afin de respecter la norme JMX, cette interface doit <b>impérativement</b> finir par <b>MBean</b>.</p>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t13">
+				<div class="panel-heading">
+					<h3 class="panel-title">Tester <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+					<div class="panel-body">
+						<p>Créez une classe <b>fr.Run</b> avec une méthode main.</p>
+						<p>Nous allons y créer un bean Calculatrice, le <i>référencer</i> dans un serveur de bean JMX et attendre que quelqu'un s'en serve. </p>
+						<p>Exemple de code : </p>
+<pre>
+...
+MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
+try {
+  // Nom de l'objet
+  ObjectName name = new ObjectName("fr.jmx:type=Calculatrice");
+  // Construction de l'objet
+  CalculatriceMBean mbean = new Calculatrice();
+  // Inscription de l'objet
+  mbs.registerMBean(mbean, name);
+  // On attend
+  System.out.println("Maintenant, ouvrez un shell et lancez jconsole");
+  Thread.sleep(Long.MAX_VALUE);
+} catch (Exception e) {
+  e.printStackTrace();
+}
+...</pre>
+					<p>Après avoir lancé votre classe Run, ouvrez un shell <b>en tant qu'administrateur</b> (Invité de commandes sous Windows), tapez jconsole. </p>
+					<img src="../bootstrap-3.3.7-dist/img/jconsole.jpg" class="center-block img-responsive" alt="Console" />
+					<p>Si rien ne se passe, allez dans le répertoire <b>bin</b> de votre JDK et relancez la commande (ou ajustez votre variable PATH en y incluant le %JAVA_HOME%\bin). </p>
+					<p>Sous certain OS, il faut être administrateur pour avoir le droit de lister les processus Java.</p>
+					<p>Vous devriez voir votre processus Java (fr.Run) dans la liste, cliquez dessus puis <b>Connect</b>. </p>
+					<p>Allez surl'onglet MBeans et retrouvez votre bean Calculatrice. </p>
+					<img src="../bootstrap-3.3.7-dist/img/jconsole2.jpg" class="center-block img-responsive" alt="Console" />
+					<p>Jouez avec et regardez ce qui lui arrive.</p>
+					<p>N'oubliez pas de killer votre processus (carré rouge dans Eclipse) quand vous aurez terminé. </p>
+				</div>
+			</div>
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="JAX-B"><a href="../Exo13-XML-JAXB/Exo13.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="JUnit"><a href="../Exo15-JUnit/Exo15.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>
+

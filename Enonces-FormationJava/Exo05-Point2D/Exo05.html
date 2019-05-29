@@ -1,0 +1,144 @@
+<!--
+	Copyright 2013
+	Ferret Renaud
+	admin@ferretrenaud.com
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="Author" content="FERRET Renaud"/>
+		<meta name="Description" content="Exercice de formation"/>
+		<meta name="copyright" content="(C) Copyright 2013 FERRET Renaud"/>
+		<meta name="distribution" content="global"/>
+
+		<title>Java - Exercice 5 - Héritage</title>
+
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<!-- Ne pas voir les liens lors de l'impressions -->
+		<style>
+			@media print {
+				a[href]:after {
+					content: none;
+				}
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="../bootstrap-3.3.7-dist/js/html5shiv.min.js"></script>
+			<script src="../bootstrap-3.3.7-dist/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default navbar-right" id="top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#" title="Java - Exercice 5">Java E5</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav">
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">1 - Point2D<span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#t11">1-1 Ajout d'une classe fille</a></li>
+					<li><a href="#t12">1-2 Test</a></li>
+					<li><a href="#t13">1-3 Par composition</a></li>
+				  </ul>
+				</li>				
+			  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<br/>
+		<div class="page-header">
+			<h1>Java - Exercice 5 - Héritage</h1>
+			<p>Ajout d'une classe fille Point3D à notre classe Point2D.</p>
+
+			<nav>
+				<ul class="pager">
+					<li class="previous" title="Static"><a href="../Exo04-Point2D/Exo04.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+					<li class="next" title="Banque"><a href="../Exo06-Banque/Exo06.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+				</ul>
+			</nav>
+		</div> <!-- page header -->
+
+		<section>
+			<h2 id="t1"><span class="label label-default">1</span> Point2D</h2>
+			<div class="panel panel-default panel-primary" id="t11">
+				<div class="panel-heading">
+					<h3 class="panel-title">Ajout d'une classe fille <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Reprenez votre projet qui traite des Point2D. </p>
+					<p>Créez une nouvelle classe qui va hériter de Point2D, aura comme nom fr.dessin.Point3D ainsi que les contraintes suivantes :</p>
+					<ul>
+						<li>un nouvel attribut de type entier: z</li>
+						<li>deux constructeurs, un sans paramètre, un qui prendra des valeurs d'initialisations pour x, y, z</li>
+						<li>une méthode qui permette de fixer la valeur de z</li>
+						<li>une méthode qui permette de récupérer la valeur de z</li>
+						<li>Redéfinissez la méthode affichage afin qu'elle affiche aussi la valeur de z. Par exemple : <pre>[4, 34, 45]</pre></li>
+						<li>Réalisez une nouvelle méthode translater afin qu'elle translate le Point3D sur ses trois axes.</li>
+					</ul>
+					<p>En Java l'héritage de classe est unique &lt;=&gt; une classe ne peut avoir qu'un seul parent direct. </p>
+					<p>L'héritage se traduit par le mot clef <b>extends</b>.</p>
+					<p>Ici, Point3D appartient à la famille des Point2D ainsi qu'à la famille de java.lang.Object</p>
+					<img src="../bootstrap-3.3.7-dist/img/p2d04.png" class="center-block img-responsive" alt="Point3D - Héritage" />
+					<p>Dans ce cas de figure, Point3D possède une méthode <i>translater(dX, dY)</i> et une méthode <i>translater(dX, dY, dZ)</i></p>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t12">
+				<div class="panel-heading">
+					<h3 class="panel-title">Test <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Reprenez votre classe Run, ajoutez des instances de Point3D, utilisez ses méthodes et vérifiez que votre nouvelle classe fonctionne.</p>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-primary" id="t13">
+				<div class="panel-heading">
+					<h3 class="panel-title">Par composition <a href="#top"><span class="glyphicon glyphicon-menu-up pull-right" title="Remonter"></span></a></h3>
+				</div>
+				<div class="panel-body">
+					<p>Si vous pensez que l'héritage n'est pas une bonne chose entre Point2D et Point3D, vous auriez pu faire usage de la composition.</p>
+					<p>Dans ce cas-là, Point3D n'hérite plus de Point2D mais possède un attribut de type Point2D. De cet manière, Point3D n'appartient pas à la famille des Point2D. </p>
+					<p>Ici Point3D n'appartient pas à la famille de Point2D, il n'appartient qu'à la famille de <a target="_blank" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html">java.lang.Object</a></p>
+					<p>En composition, les méthodes getX, getY, setX, setY délèguent leur comportement à l'instance de Point2D qui fait partie de Point3D. </p>
+					<img src="../bootstrap-3.3.7-dist/img/p2d05.png" class="center-block img-responsive" alt="Point3D - Composition" />
+					<p>Dans ce cas de figure, Point3D ne possède pas de méthode <i>translater(dX, dY)</i></p>
+				</div>
+			</div>
+		</section>
+
+		<nav>
+			<ul class="pager">
+				<li class="previous" title="Static"><a href="../Exo04-Point2D/Exo04.html"><span aria-hidden="true">&larr;</span> Exercice Précédent</a></li>
+				<li class="next" title="Banque"><a href="../Exo06-Banque/Exo06.html">Exercice Suivant <span aria-hidden="true">&rarr;</span></a></li>
+			</ul>
+		</nav>
+
+		<br/><br/>
+		<footer>
+			<p class="text-center">
+				<a href="http://validator.w3.org/">
+					<img src="../bootstrap-3.3.7-dist/img/HTML5_Logo_32.png" alt="Valid HTML 5.0" />
+				</a><br/>
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span> <a href="http://ferretrenaud.fr" target="_blank">Ferret Renaud</a> 2013
+			</p>
+		</footer>
+
+		<script src="../bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>
