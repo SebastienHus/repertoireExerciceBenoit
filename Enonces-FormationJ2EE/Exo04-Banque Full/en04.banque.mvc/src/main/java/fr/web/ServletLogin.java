@@ -2,6 +2,7 @@ package fr.web;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +27,9 @@ public class ServletLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// 1 - Part vers la page login.jsp
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	@Override
