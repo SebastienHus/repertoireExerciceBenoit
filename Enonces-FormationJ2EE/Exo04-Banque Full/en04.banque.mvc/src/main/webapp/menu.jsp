@@ -9,6 +9,14 @@
 </head>
 
 <body class="elbody">
+
+	<!-- test si nous sommes conecté ! -->
+	${userId }
+<c:choose>
+	<c:when test="${ userId  != null}">
+		
+	
+
 	<table border="0" width="100%">
 		<tr>
 			<td align="center" valign="top"><img src="<c:url value="images/image-bienvenue.jpg" />" border="0" height="98" alt="" /></td>
@@ -35,6 +43,13 @@
 									<img src="<c:url value= "images/puce.gif" />" width="13" height="18" alt="" />&nbsp;
 									<a href="comptes/virement.html"> Virement </a></td>
 								</tr>
+								
+								<tr class="ellignetableau3">
+									<td width="446" class="elcelluletableau3">
+									<img src="<c:url value= "images/puce.gif" />" width="13" height="18" alt="" />&nbsp;
+									<a  href="<c:url value="/ServletDeconnection" />" /> Deconnexion </a></td>
+								</tr>
+								
 							</table>
 						</td>
 					</tr>
@@ -43,4 +58,14 @@
 		</tr>
 	</table>
 </body>
+
+</c:when>
+
+<c:otherwise>
+
+	<p>Petit coquinou tu essais de rentrer en scred ca vas pas le faire aller hop vas te logger ou t'inscrire</p>
+
+</c:otherwise²>
+</c:choose>
+
 </html>

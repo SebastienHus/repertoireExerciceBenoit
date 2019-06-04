@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet qui va afficher tous les comptes d'un client. <br/>
  */
-@WebServlet(urlPatterns = { "/ServletCompte" })
+@WebServlet(urlPatterns = { "/ServletCompte"})
 public class ServletCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

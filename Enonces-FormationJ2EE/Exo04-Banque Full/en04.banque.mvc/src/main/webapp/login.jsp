@@ -9,7 +9,11 @@
 </head>
 
 <body class="elbody">
-	<form id="frmLogin" name="frmLogin" action="ServletMenu" method="post">
+
+
+	<form id="frmLogin" name="frmLogin" action="ServletLogin" method="post">
+	
+	
 		<table width="100%">
 			<tr>
 				<td align="right" valign="top"><img src="<c:url value="images/titre.jpg"/>" alt="" /></td>
@@ -38,6 +42,8 @@
 									<tr>
 										<td class="ellibelle1">Mot de passe</td>
 										<td><input type="password" name="inPass" value="" /></td>
+										<p>${msgPass }</p>
+										<p>${msgLogin }</p>
 									</tr>
 									<tr>
 										<td colspan="2" align="center">
