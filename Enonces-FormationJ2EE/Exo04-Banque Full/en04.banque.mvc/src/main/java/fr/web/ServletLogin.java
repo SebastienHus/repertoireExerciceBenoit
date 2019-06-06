@@ -63,15 +63,21 @@ public class ServletLogin extends HttpServlet {
 					{
 						msgLogin = "Votre login n'est pas reconnu !";
 						request.setAttribute("msgLogin", msgLogin);
+
+						return;
 					}
 					if(userId == -2)
 					{
 						msgPass = "Votre mot de passe ne correspond pas à votre login !";
 						request.setAttribute("msgPass", msgPass);
+
+						return ;
 					}
 
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 					dispatcher.forward(request, response);
+
+					return ;
 				}
 				else
 				{
@@ -82,9 +88,9 @@ public class ServletLogin extends HttpServlet {
 					session.setAttribute("userId", userId);
 
 					//je suis rediriger sur la page menu
-					response.sendRedirect(request.getContextPath() + "/menu.jsp");
+					response.sendRedirect(request.getContextPath() + "/ServletMenu");
 
-
+					return ;
 				}
 
 			}
@@ -113,18 +119,22 @@ public class ServletLogin extends HttpServlet {
 			{
 				msgLogin = "Vôtre login est vide" ;
 				request.setAttribute("msgLogin", msgLogin);
+
+				return ;
 			}
 
 			if(pass.equals(""))
 			{
 				msgPass = "Vôtre mot de passe est vide" ;
 				request.setAttribute("msgPass", msgPass);
+
+				return ;
 			}
-
-
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 			dispatcher.forward(request, response);
+
+			return ;
 		}
 
 

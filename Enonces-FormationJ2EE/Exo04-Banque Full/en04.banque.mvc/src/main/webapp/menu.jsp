@@ -15,7 +15,8 @@
 <c:choose>
 	<c:when test="${ userId  != null}">
 		
-	
+	<p>${msgHome }</p>
+	<p>Que souhaitez vous réaliser comme operation sur votre compte</p>
 
 	<table border="0" width="100%">
 		<tr>
@@ -65,7 +66,7 @@
 
 	<p>Petit coquinou tu essais de rentrer en scred ca vas pas le faire aller hop vas te logger ou t'inscrire</p>
 
-</c:otherwise²>
+</c:otherwise>
 </c:choose>
 
 </html>

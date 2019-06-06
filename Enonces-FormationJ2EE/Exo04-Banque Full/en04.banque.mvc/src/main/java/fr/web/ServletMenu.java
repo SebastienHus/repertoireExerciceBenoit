@@ -2,6 +2,7 @@ package fr.web;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +26,11 @@ public class ServletMenu extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		request.setAttribute("msgHome", "Bienvenue");
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/menu.jsp");
+		dispatcher.forward(request, response);
 
 		// 1 - Verifie que l'utilisateur est bien connecte
 		// Regarde dans la session si l'information placee par la servlet login

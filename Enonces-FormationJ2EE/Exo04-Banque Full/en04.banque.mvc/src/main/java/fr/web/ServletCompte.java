@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet qui va afficher tous les comptes d'un client. <br/>
@@ -26,6 +27,8 @@ public class ServletCompte extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+
+		HttpSession session = request.getSession(true);//attention true ou false
 		// 1 - Verifie que l'utilisateur est bien connecte
 		// Regarde dans la session si l'information placee par la servlet login
 		// est bien la
